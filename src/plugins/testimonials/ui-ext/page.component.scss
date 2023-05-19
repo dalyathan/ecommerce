@@ -1,0 +1,83 @@
+.name{
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: capitalize;
+  
+ 
+}
+
+#upper{
+    font-size: 2rem;
+    font-style: italic;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    // background-color: lightblue;
+    padding-left: 95% !important;
+}
+#bod{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 30vh;
+}
+.fq{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+.box{
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow:  2px 2px 2px #888888; ;
+}
+.middle-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.model{
+    color:black
+}
+.testi{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+//  background-color: lightyellow;
+ margin-bottom: 1vh;
+}
+.round{
+  width: 5vw;
+  height: 5vh;
+  
+  aspet-ratio: 100%;
+}
+.txt-btn:hover{
+  text-decoration: underline;
+}
+.txt-btn{
+   border: 0px;
+   background-color: inherit;
+   color: teal;
+   
+}
+.text-area{
+  width: 70%;
+  height: 10%;
+  border: line 2px black;
+}
+.danger{
+   font-weight: bold;
+   color: red;
+}
+
+// .float-right{
+//   margin-left: 95% !important;
+// }
+
+
+.card-img img{
+  height: 10vw !important;
+  width:  7.5vw !important;
+}

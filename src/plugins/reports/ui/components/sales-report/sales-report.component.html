@@ -1,0 +1,214 @@
+<div class="content-container" *ngIf="salesListIsLoading">
+    <div class="content-area centered-content-area">
+        <clr-spinner></clr-spinner>
+    </div>
+</div>
+<div >
+    <clr-accordion>
+        <clr-accordion-panel>
+          <clr-accordion-title>Filters</clr-accordion-title>
+          <clr-accordion-content *clrIfExpanded>
+    <div class="clr-row" *ngIf="!salesListIsLoading">
+        <div class="clr-col-sm-12 clr-col-lg-2 clr-align-self-sm-start">
+            <label>Tax Rate</label>
+            <select clrSelect name="options" [(ngModel)]="filter.taxRate" (click)="doesContentReflectFilter=false">
+                <option value="null" >All</option>
+                <option value="{{value}}" *ngFor="let value of taxRates" >{{value}} %</option>
+            </select>
+        </div>
+        <div class="clr-col-sm-12 clr-col-lg-4 clr-align-self-sm-start clr-col-md-12">
+            <div class="clr-row">
+                <div class="clr-col-sm-4 clr-col-9">
+                    <label>From</label>
+                    <vdr-datetime-picker 
+                        id="fromDate"
+                        [(ngModel)]="from"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                        ></vdr-datetime-picker>
+                    <!-- [max]="to ?? today" -->
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-start clr-col-sm-12">
+            <div class="clr-row">
+                <div class="clr-col-sm-4 clr-col-9">
+                    <label>To</label>
+                    <vdr-datetime-picker 
+                        id="toDate"
+                        [(ngModel)]="to"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                        ></vdr-datetime-picker>
+                        <!-- [min]="from"
+                        [max]="today" -->
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-lg-2 clr-align-self-sm-start clr-col-sm-12">
+            <label>Discount</label>
+            <input clrInput  type="number" step='0.01' [(ngModel)]="filter.discount" 
+            (input)="doesContentReflectFilter=false;" />
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-center clr-col-sm-12">
+            <label>Products</label>
+            <div>
+                <button (click)="selectProducts()" class="btn btn-sm btn-secondary">
+                    {{  filter.productIds !== null ? filter.productIds.length : 0  }} 
+                    Product{{ filter.productIds !== null && filter.productIds.length<=1 ? '' : 's' }} Selected...
+                </button>
+                <button class="btn btn-sm circular-button" 
+                    [attr.disabled]="filter.productIds.length == 0?'disabled':null"
+                    (click)="filter.productIds=[];doesContentReflectFilter=false;">
+                    <clr-icon shape="times"></clr-icon>
+                </button>
+            </div>
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-center clr-col-sm-12">
+            <label>Customers</label>
+            <div>
+                <button (click)="selectCustomers()" class="btn btn-sm btn-secondary">
+                    {{  filter.customerIds !== null ? filter.customerIds.length : 0  }} 
+                    Customer{{ filter.customerIds !== null && filter.customerIds.length<=1 ? '' : 's' }} Selected...
+                </button>
+                <button class="btn btn-sm circular-button" 
+                    [attr.disabled]="filter.customerIds.length == 0?'disabled':null"
+                    (click)="filter.customerIds=[];doesContentReflectFilter=false;">
+                    <clr-icon shape="times"></clr-icon>
+                </button>
+            </div>
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-center clr-col-sm-12">
+            <label>Customer Group</label>
+            <div>
+                <button (click)="selectCustomerGroups()" class="btn btn-sm btn-secondary">
+                    {{ filter.customerCategoryIds !== null ? filter.customerCategoryIds.length : 0 }}
+                    Customer Group{{ filter.customerCategoryIds !== null && filter.customerCategoryIds.length<=1 ? '' : 's' }} Selected...
+                </button>
+                <button class="btn btn-sm circular-button" 
+                    [attr.disabled]="filter.customerCategoryIds.length == 0?'disabled':null"
+                    (click)="filter.customerCategoryIds=[];doesContentReflectFilter=false;">
+                    <clr-icon shape="times"></clr-icon>
+                </button>
+            </div>
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-start clr-col-md-12 little-offset">
+            <vdr-dropdown *ngIf="!excelLoading">
+                <button class="btn btn-outline" vdrDropdownTrigger [attr.disabled] ="isListEmpty?'disabled':null">
+                    <clr-icon shape="plus"></clr-icon>
+                    Export to
+                </button>
+                <vdr-dropdown-menu vdrPosition="bottom-left">
+                    <button
+                        type="button"
+                        vdrDropdownItem
+                        (click)="generatePDF()"
+                    >
+                        PDF
+                    </button>
+                    <button
+                        type="button"
+                        vdrDropdownItem
+                        (click)="exportToExcel()"
+                    >
+                        EXCEL
+                    </button>
+                </vdr-dropdown-menu>
+            </vdr-dropdown>
+            <clr-spinner *ngIf="excelLoading" clrMedium></clr-spinner>
+        </div>
+        <div class="clr-col-lg-2 clr-align-self-sm-center clr-col-md-12 clr-col-sm-12 little-offset">
+            <div *ngIf="!excelLoading">
+                <button
+                    class="btn btn-primary"
+                    (click)="getCompletedOrders(false)"
+                    >
+                    <clr-icon shape="filter-grid"></clr-icon>
+                    Apply Filter
+                </button>
+            </div>
+        </div>
+    </div>
+    </clr-accordion-content>
+    </clr-accordion-panel>
+    </clr-accordion>
+</div>
+<div #formattedPdf>
+    <div class="clr-row">
+        <div class="clr-col" style="margin-left: 2vw !important;">
+            <div class="card" *ngIf="doesContentReflectFilter && salesList.length">
+                <div class="card-block">
+                    <h4 class="card-title">Ethiolab Sales Report</h4>
+                    <p class="card-text">
+                        {{header}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-4" style="margin-right: 2vw !important;">
+            <img src="/assets/logo.png" style="width:30vw;height:auto;"/>
+        </div>
+    </div>
+    <vdr-data-table
+        *ngIf="!salesListIsLoading"
+        [items]="salesList"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="salesList.length"
+        [currentPage]="currentPage"
+        (pageChange)="setPage($event)"
+        (itemsPerPageChange)="setItemsPerPage($event)"
+    >   
+        <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+        <ng-template let-result="item">
+            <td class="left align-middle">
+                <a href="./orders/{{result.orderId}}" *ngIf="result.orderId!=-1">
+                    {{ result.orderCode }}
+                </a>
+                <span *ngIf="result.orderId==-1">
+                    {{ result.orderCode }}
+                </span>
+            </td>
+            <td class="left align-middle">
+                {{ result.orderPlacedAt }}
+            </td>
+            <td class="left align-middle">
+                <a href="./customer/customers/{{result.customerId}}" *ngIf="result.customerId!=-1">
+                    {{ result.customer }}
+                </a>
+                <span *ngIf="result.customerId==-1">
+                    {{ result.customer }}
+                </span>
+            </td>
+            <td class="left align-middle">
+                <a href="./catalog/products/{{result.productId}};id={{result.productId}};tab=variants" *ngIf="result.orderId!=-1">
+                    {{ result.sku }}
+                </a>
+                <span *ngIf="result.orderId==-1">
+                    {{ result.sku }}
+                </span>
+            </td>
+            <td class="left align-middle">
+                {{ result.unitPrice }}
+            </td>
+            <td class="left align-middle">
+                {{ result.totalPrice }}
+            </td>
+            <td class="left align-middle">
+                {{ result.discount }}
+            </td>
+            <td class="left align-middle">
+                {{ result.taxRate }} %
+            </td>
+            <td class="left align-middle">
+                {{ result.taxCollected }}
+            </td>
+            <td class="left align-middle">
+                {{ result.totalAmount }}
+            </td>
+            <td class="left align-middle">
+                {{ result.paymentMethod }}
+            </td>
+        </ng-template>
+    </vdr-data-table>
+</div>
+

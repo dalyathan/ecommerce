@@ -1,0 +1,99 @@
+<div class="clr-form-control">
+   <label class="clr-control-label">Filter By</label>
+   <clr-checkbox-container>
+      <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="seenOption" (change)="applyFilter($event)"
+         value="filterBySeen" [(ngModel)]="filterBySeen" />
+        <label>Is Seen</label>
+      </clr-checkbox-wrapper>
+      <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="approvedOption" (change)="applyFilter($event)"
+         value="filterByApproved" [(ngModel)]="filterByApproved" />
+        <label>Is Approved</label>
+      </clr-checkbox-wrapper>
+      <!-- <clr-control-helper>Helper text</clr-control-helper> -->
+    </clr-checkbox-container>
+</div>
+<vdr-data-table
+    [items]="quotes"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="quotes.length"
+    [currentPage]="currentPage"
+    (pageChange)="setPage($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>   
+    <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+    <ng-template let-result="item">
+        <td class="left align-middle">
+            {{result.subject}}
+        </td>
+        <td class="left align-middle">
+            {{result.fromPhone}}
+        </td>
+        <td class="left align-middle">
+            <div>
+               {{ result.fromEmail }}
+            </div>
+        </td>
+        <td class="left align-middle">
+            {{ result.isApproved ? "Approved" : "Not Approved" }}
+        </td>
+        <td class="left align-middle">
+            {{ result.isSpecial ? "Special" : "Not Special" }}
+        </td>
+        <td class="left align-middle">
+           {{result.isseen ? "Yes" : "No"  }}    
+         </td>
+        <td class="left align-middle">
+            {{result.createdAt | date:'medium'}}
+        </td>
+        <td class="left align-middle">
+            <vdr-dropdown>
+               <button vdrDropdownTrigger class="dropdown-toggle btn btn-link">
+                  
+                  <cds-icon shape="ellipsis-horizontal" direction="down"></cds-icon>
+               </button>
+               <vdr-dropdown-menu vdrPosition="bottom-left">
+                  <div class="dropdown-item">
+                     <button class="see-btn" (click)="go(result)" 
+                        [disabled]="!(['ReadQuotes','UpdateQuotes'] | hasPermission)">See Details</button>
+                  </div>
+                  <div class="dropdown-item">
+                     <button *ngIf="!result.isseen" class="see-btn" (click)="inv(result.id)" 
+                     [disabled]="!(['UpdateQuotes'] | hasPermission)">Mark As read</button>
+                  </div>
+                  <div class="dropdown-item">
+                     <button *ngIf="!result.isApproved" class="see-btn" (click) = "approveQuote(result.id)" 
+                     [disabled]="!(['UpdateQuotes'] | hasPermission)">  Approve  </button>
+                  </div>
+                  <div class="dropdown-item">
+                     <button class="see-btn" (click)="delete(result.id)" 
+                     [disabled]="!(['DeleteQuotes'] | hasPermission)">  Delete   </button>
+                  </div>
+                  <div class="dropdown-item">
+                     <button class="see-btn" (click)="openFile(result)"
+                     [disabled]="!(['ReadQuotes','UpdateQuotes'] | hasPermission) || !result.assetUrl">
+                        View Quote
+                     </button>
+                  </div>
+                  <div class="dropdown-item">
+                     <button class="see-btn" (click)="regenerate(result.id)" 
+                     [disabled]="!(['UpdateQuotes'] | hasPermission)">  Regenerate Quote   </button>
+                  </div>
+               </vdr-dropdown-menu>
+            </vdr-dropdown>
+        </td>
+    </ng-template>
+</vdr-data-table>
+ 
+
+<clr-modal [(clrModalOpen)]="isModalVisible">
+<h2 class='modal-title'>Quote details</h2>
+<div class='modal-body'>   
+Email: {{modalFromEmail}}<br />
+   From Phone: {{modalFromPhone}}<br /> 
+   Subject:    {{modalSubject}} <br />
+   Message:    {{modalMessage}} <br />
+   Company Name: {{modalCompanyName}}<br />
+</div>   
+</clr-modal>

@@ -1,0 +1,45 @@
+<div  id ='chat-main'>
+    <div id = 'text-chats'>Chats</div>
+    <div *ngIf = "users.length == 0"> NO chats Found :(</div>
+   <div *ngFor="let userData of users; let i = index" class="chat-tile" (click) = "setChat(i)" key = "i">
+        <div class="chat-avatar">
+            <div>{{userData.user.firstName[0]}}{{userData.user.firstName[1]}}</div>
+        </div>
+        <!-- <div class="space-holder"></div> -->
+        <div class="chat-name"> 
+            <div class="chat-title-name">
+                {{userData.user.firstName}} {{userData.user.lastName}}
+            </div>
+            <!-- <div class="last-message">
+                {{userData.unseen > 0 ? userData.unseen : ""}}
+            </div> -->
+        </div>
+        <div class="chat-badge">
+            <span class="badge badge-orange">  {{userData.unseen > 0 ? userData.unseen : "0"}} <span class="clr-sr-only">items in a purple badge</span></span>
+        </div>
+</div>
+<div id="chat-sender">
+    <div id="chat-sender-title">
+        <span>{{currentIndex == null ? "Chat" : users[currentIndex]?.user.firstName + " " + users[currentIndex]?.user.lastName   }}</span>
+        <button *ngIf="isMessenderVisible" class='btn ' (click)="hideChat()"><clr-icon shape="times"></clr-icon></button>
+    </div>
+    <div id="chat-sender-body">
+         <div id="chat-sender-body-body" [@enterAnimation] *ngIf="isMessenderVisible">
+            <div   *ngFor = "let message of users[currentIndex].messages" key="index">
+                <div [class] = 'message.isFromAdmin ? "my-msg message": "others-msg message"'>
+                    <div *ngIf="message.isFromAdmin" class="msg-header">From You</div>
+                    {{message.msg}}
+                 </div>
+           </div>
+         </div>
+        <div id="chat-sender-bottom" [@enterAnimation] *ngIf="isMessenderVisible">
+
+            <input [value]="messageToSend" (change)="messageToSend=$event.target.value" 
+            (keyup.enter)="sendMessage()"
+            id = 'sender-text' type ='text' placeholder='Messages...'/>
+            <button id="send-button" (click) ="sendMessage()" 
+                class="btn btn-success">Send <clr-icon shape="arrow"></clr-icon></button>
+        </div>
+    </div>
+ </div>
+</div>

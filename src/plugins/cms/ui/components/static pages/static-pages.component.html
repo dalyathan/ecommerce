@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<clr-tabs clrLayout="vertical">
+    <clr-tab *ngFor="let staticPage of staticPages ">
+        <button clrTabLink id="link1">{{staticPage.name}}</button>
+        <clr-tab-content id="content1" *clrIfActive="staticPage.name==='ABOUT'">
+            <vdr-rich-text-editor  [(ngModel)]="staticPage.description" [readonly]="!(['UpdateCms'] | hasPermission)"
+                                   [label]="staticPage.name">
+            </vdr-rich-text-editor>
+            <button class="btn btn-sm btn-outline-primary " (click)="update()"
+            [disabled]="!(['UpdateCms'] | hasPermission)">Update</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="getCms()"
+            [disabled]="!(['UpdateCms'] | hasPermission)">Reset</button>
+        </clr-tab-content>
+    </clr-tab>
+</clr-tabs>
+</body>
+</html>

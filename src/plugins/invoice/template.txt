@@ -1,0 +1,142 @@
+<div style="text-align:center"><span style="font-size:10px">ኢትዮላብ መሳሪያዎች አቅራቢ ኃላ/የተ/የግ/ማኅበር</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">Ethiolab Equipment Supply PLC</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">Mobile: +251 912 69 07 39 / +251 912 81 05 39 / +251 111 264 829</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">የተጨማሪ እሴት ታክስ</span></div>
+
+<div style="margin-left:0px; margin-right:0px; text-align:center"><span style="font-size:10px">Value Added Tax Sales </span></div>
+
+<div style="margin-left:0px; margin-right:0px; text-align:center"><span style="font-size:10px"><span style="color:black; font-family:Ebrima">የእጅ በእጅ ሽያጭ ደረሰኝ </span></span></div>
+
+<div style="margin-left:0px; margin-right:0px; text-align:center"><span style="font-size:10px"><u>CASH SALES INVOICE</u></span></div>
+
+<div style="margin-left:0px; margin-right:0px; text-align:right"><span style="font-size:10px">ቀን <u>{{date}} </u></span></div>
+
+<div style="margin-left:0px; margin-right:0px; text-align:right"><span style="font-size:10px">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; </span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">ከ <u>ኢትዮላብ መሳሪያዎች አቅራቢ ኃላ/የተ/የግ/ማኅበር</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ለ&nbsp; <u>{{order.customer.firstName}} {{order.customer.lastName}}</u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">From&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To </span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">አድራሻ፡ አ/አ ክ/ከ፡ <u>አራዳ</u> ወ፡ <u>09</u> ቤ.ቁ.፡ <u>881/EBG-407</u>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; አድራሻ፡ አ/አ ክ/ከ፡ <u>&nbsp; &nbsp; &nbsp;</u> ወ፡&nbsp;<u> &nbsp;&nbsp;</u> ቤ.ቁ.፡&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Address S/C/: W: H.No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address S/C/: W: H.No.</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">የታክስ ከፋይ መ.ቁ <u>0039669094</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; የታክስ ከፋይ መ.ቁ &nbsp;&nbsp;<u>{{order.customer.customFields.tin_number}}</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u> </u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Supplier&rsquo;s TIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Customer&rsquo;s TIN</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">የሻጭ የተ.እ.ታ ቁጥር <u>6872500002</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; የተ.እ.ታ ቁጥር &nbsp;&nbsp;<u>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Supplier&rsquo;s VAT Reg. No.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Customer&rsquo;s VAT Reg. No.</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">የተመዘገበበት ቀን <u>መስከረም/30/2006 ዓ.</u>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; የተመዘገበበት ቀን&nbsp;&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Date of VAT Registration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of VAT Registration</span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ዕቃው የቀረበበት ቀን&nbsp; <u>{{date}} </u></span></div>
+
+<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Supply</span></div>
+
+<table cellspacing="0" style="border-collapse:collapse; margin-left:5.25pt; margin:0; overflow:visible; padding:0; text-indent:0; vertical-align:top">
+	<tbody>
+		<tr>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:31pt">
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">ተ.ቁ</span></div>
+
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">S.No</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:135pt">
+			<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">የእቃው አይነት</span></div>
+
+			<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">Item Description</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:51pt">
+			<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">ብዛት</span></div>
+
+			<div style="margin-left:0; margin-right:0; text-align:center"><span style="font-size:10px">Quantity</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:45pt">
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">የአንዱ ዋጋ</span></div>
+
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Unit Price</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:44pt">
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">ጠቅላላ ዋጋ</span></div>
+
+			<div style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:10px">Total Price</span></div>
+			</td>
+		</tr>
+		<!--{{#each order.lines }}-->
+		<tr>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:13pt; width:31pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0; text-align:left">{{ productVariant.sku }}</div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:13pt; width:135pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0; text-align:left">{{ productVariant.name }}</div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:13pt; width:51pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0; text-align:left">{{ quantity }}</div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:13pt; text-align:right; width:45pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0">{{formatMoney discountedUnitPrice }}</div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:13pt; text-align:right; width:45pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0">{{formatMoney discountedLinePrice }}</div>
+			</td>
+		</tr>
+		<!--{{/each}}-->
+		<tr>
+			<td colspan="2" rowspan="4" style="border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:207pt">
+			<div style="margin-left:0; margin-right:0; text-align:left">&nbsp;</div>
+			</td>
+			<td colspan="2" style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:96pt">
+			<div style="margin-left:0; margin-right:0; text-align:right"><span style="font-size:10px">ድምር</span><br />
+			<span style="font-size:10px">Total</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; text-align:right; width:30pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0; text-align:right">{{ formatMoney order.subTotal }}</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; width:96pt">
+			<div style="margin-left:0; margin-right:0; text-align:right"><span style="font-size:10px">የማጓጓዣ ክፍያ</span><br />
+			<span style="font-size:10px">Shipping Costs</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; text-align:right; width:30pt"><span style="font-size:10px">{{formatMoney order.shipping}}</span></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; text-align:right; width:96pt">
+			<div style="margin-left:0; margin-right:0; text-align:right"><span style="font-size:10px">ጠቅላላ ታክስ </span><br />
+			<span style="font-size:10px">Total Tax</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:17pt; text-align:right; width:30pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0">{{formatMoney totalTax}}</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:26pt; width:96pt">
+			<div style="margin-left:0; margin-right:0; text-align:right"><span style="font-size:10px">ጠቅላላ ድምር (ታክስን ጨምሮ)</span><br />
+			<span style="font-size:10px">Grand Total (Incl. VAT)</span></div>
+			</td>
+			<td style="border-bottom-style:solid; border-bottom-width:1pt; border-left-style:solid; border-left-width:1pt; border-right-style:solid; border-right-width:1pt; border-top-style:solid; border-top-width:1pt; height:26pt; text-align:right; width:30pt">
+			<div style="font-size:10px; margin-left:0; margin-right:0">{{ formatMoney order.totalWithTax }}</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div style="margin-left:0; margin-right:0; text-align:left">&nbsp;</div>
+
+<div style="margin-left:0; margin-right:0; text-align:left">&nbsp;</div>
+
+<div style="margin-left:0; margin-right:0; margin-top:8vh; text-align:right"><span style="font-size:10px">የገንዘብ ተቀባይ ስምና ፊርማ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+<div style="margin-left:0px; margin-right:0px; text-align:right"><span style="font-size:10px">Cashier&rsquo;s Name &amp; Signature</span></div>
+
+<div style="align-items:center; display:inline-grid; font-size:12.5px; margin-left:0px; margin-right:2vw">{{issuerFullName}}&nbsp;&nbsp;</div>
+
+<div style="align-items:center; display:inline-grid; margin-bottom:0; margin-left:auto; margin-right:12vw; margin-top:0"><span style="font-size:10px"><img alt="hello" src="{{issuerSignature}}" style="color:transparent; float:right; height:7.75vh; width:15vw" /></span></div>
+</div>

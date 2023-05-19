@@ -1,0 +1,68 @@
+.bigSaleContainer {
+  width: fit-content !important;
+  margin: auto !important;
+
+  // .card-img {
+  //   width: 35%;
+  //   height: auto;
+  // }
+
+  // .card {
+  //   display: inline-flex;
+  // }
+
+  .text {
+    padding: 2.5rem;
+  }
+
+  .text > div {
+    margin-bottom: 1rem;
+  }
+
+  .overview {
+    text-transform: uppercase;
+    line-height: 1.4;
+    font-size: 0.7rem;
+  }
+
+  .title {
+    text-transform: uppercase;
+    color: black;
+    font-weight: lighter;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 1rem;
+    color: white;
+  }
+
+  .input-field {
+    width: 10vw !important;
+  }
+
+  .produt-row{
+    width: 30vw !important;
+  }
+  .box-image{
+    width: 27.5vw !important;
+    height: 30vh !important;
+  }
+  .image-button{
+    position: relative !important;
+    left: 75% !important;
+  }
+  .circular-button{
+    width: 16px !important;
+    min-width: 16px !important;
+    height: 16px !important;
+    min-height: 16px !important;
+    border-radius: 50% !important;
+    padding:  0px 0px  !important;
+  }
+  clr-icon{
+    margin-top: -6.5px !important;
+  }
+}
+

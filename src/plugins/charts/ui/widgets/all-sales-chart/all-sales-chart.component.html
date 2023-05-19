@@ -1,0 +1,50 @@
+<div id="whole-window">
+    <div class="clr-row">
+        <div class="btn-group btn-sm">
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-1" id="btn-demo-radio-21" (click)="weeklyData($event)" checked>
+                <label for="btn-demo-radio-21">This Week</label>
+            </div>
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-1" id="btn-demo-radio-22" (click)="monthlyData($event)">
+                <label for="btn-demo-radio-22">This Month</label>
+            </div>
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-1" id="btn-demo-radio-33" (click)="yearlyData($event)">
+                <label for="btn-demo-radio-33">This Year</label>
+            </div>
+        </div>
+    </div>
+    <div class="clr-row clr-justify-content-center clr-align-self-end">
+        <canvas id="allSalesChart" class="graph" *ngIf="!isLoading && !errorFetchingData && !data.emptyData">
+        </canvas>
+        <span class="spinner spinner-lg" *ngIf="isLoading">
+            Loading...
+        </span>
+        <div class="alert alert-danger" role="alert" *ngIf="errorFetchingData && !isLoading">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        Error Fetching Data
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="alert alert-info" role="alert" *ngIf="data.emptyData && !isLoading">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        No Recorded Transactions
+                    </span>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div *ngIf="data.emptyData" class="clr-align-self-center">Empty Data</div> -->
+    </div>
+</div>

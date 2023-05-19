@@ -1,0 +1,194 @@
+<div class="content-container" *ngIf="listLoading">
+    <div class="content-area centered-content-area">
+        <clr-spinner></clr-spinner>
+    </div>
+</div>
+<div class="filter" *ngIf="!listLoading">
+    <div class="clr-row padding">
+        <vdr-product-search-input
+            #productSearchInputComponent
+            (searchTermChange)="setSearchTerm($event)"
+        ></vdr-product-search-input>
+    </div>
+    <clr-accordion>
+        <clr-accordion-panel>
+          <clr-accordion-title>Filters</clr-accordion-title>
+          <clr-accordion-content *clrIfExpanded>
+            <div>
+                <div class="clr-row" >
+                    <div class="clr-col-sm-12 clr-col-lg-3 clr-align-self-sm-start">
+                        <label>Stock on Hand</label>
+                        <input clrInput type="number" (input)="doesContentReflectFilter=false" 
+                            [(ngModel)]="filter.stockOnHand" />
+                    </div>
+                    <div class="clr-col-sm-12 clr-col-md-6 clr-col-lg-3 clr-align-self-sm-start">
+                        <div class="clr-row">
+                            <div class="clr-col-sm-4 clr-col-2">
+                                <label>Opening Day</label>
+                                <vdr-datetime-picker 
+                                    id="fromDate"
+                                    [(ngModel)]="filter.stockFrom"
+                                    [max]="today"
+                                    (click)="doesContentReflectFilter=false"
+                                    ></vdr-datetime-picker>
+                                    <!-- [max]="to ?? today" -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-sm-12 clr-col-md-6 clr-col-lg-3 clr-align-self-sm-start">
+                        <div class="clr-row">
+                            <div class="clr-col-sm-4 clr-col-9">
+                                <label>Added After</label>
+                                <vdr-datetime-picker 
+                                    id="fromDate"
+                                    [(ngModel)]="from"
+                                    [max]="today"
+                                    (click)="doesContentReflectFilter=false"
+                                    ></vdr-datetime-picker>
+                                    <!-- [max]="to ?? today" -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-sm-12 clr-col-md-6 clr-col-lg-3 clr-align-self-sm-start ">
+                        <div class="clr-row">
+                            <div class="clr-col-sm-4 clr-col-9">
+                                <label>Added Before</label>
+                                <vdr-datetime-picker 
+                                    id="toDate"
+                                    [(ngModel)]="to"
+                                    [max]="today"
+                                    (click)="doesContentReflectFilter=false"
+                                    ></vdr-datetime-picker>
+                                    <!-- [min]="from"
+                                    [max]="today" -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" clr-col-sm-12 clr-col-md-6 clr-col-lg-8 clr-col-6 little-offset">
+                        <div class="clr-row buttons-row">
+                        
+                            <div class="clr-col-sm-12 clr-col-1 clr-col-md-4 clr-col-lg-7 ">
+                                <vdr-dropdown *ngIf="!excelLoading">
+                                    <button class="btn btn-outline" vdrDropdownTrigger>
+                                        <clr-icon shape="plus"></clr-icon>
+                                        Export to
+                                    </button>
+                                    <vdr-dropdown-menu vdrPosition="bottom-left">
+                                        <button
+                                            type="button"
+                                            vdrDropdownItem
+                                            (click)="generatePDF()"
+                                            [attr.disabled] ="productsList.length == 0?'disabled':null"
+                                        >
+                                            PDF
+                                        </button>
+                                        <button
+                                            type="button"
+                                            vdrDropdownItem
+                                            (click)="export()"
+                                            [attr.disabled] ="productsList.length == 0?'disabled':null"
+                                        >
+                                            EXCEL
+                                        </button>
+                                    </vdr-dropdown-menu>
+                                </vdr-dropdown>
+                                <clr-spinner *ngIf="excelLoading" clrMedium></clr-spinner>
+                            </div>
+
+                            <div class="clr-col-sm-12 clr-col-5 clr-col-md-4 clr-col-lg-4">
+                                <button
+                                    class="btn btn-primary"
+                                    (click)="getProductVariants()"
+                                    [attr.disabled] ="excelLoading?'disabled':null"
+                                    >
+                                    <clr-icon shape="filter-grid"></clr-icon>
+                                    Apply Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </clr-accordion-content>
+        </clr-accordion-panel>
+    </clr-accordion>
+</div>
+<div #formattedPdf class="pdf">
+    <div class="clr-row">
+        <div class="clr-col" style="margin-left: 2vw !important;">
+            <div class="card" *ngIf="doesContentReflectFilter && productsList.length">
+                <div class="card-block">
+                    <h4 class="card-title">Ethiolab Stock Report</h4>
+                    <p class="card-text">
+                        {{header}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-4" style="margin-right: 2vw !important;">
+            <img src="/assets/logo.png" style="width:30vw;height:auto;"/>
+        </div>
+    </div>
+    <vdr-data-table
+        *ngIf="!this.listLoading"
+        [items]="searchedProductsList"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="searchedProductsList.length"
+        [currentPage]="currentPage"
+        (pageChange)="setPage($event)"
+        (itemsPerPageChange)="setItemsPerPage($event)"
+    >   
+        <vdr-dt-column></vdr-dt-column>
+        <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+        <!-- <vdr-dt-column>Action</vdr-dt-column> -->
+        <ng-template let-result="item">
+            <td class="left align-middle">
+                <div class="image-placeholder">
+                    <img
+                        [src]="result.img"
+                    />
+                    <ng-template #imagePlaceholder>
+                        <div class="placeholder">
+                            <clr-icon shape="image" size="48"></clr-icon>
+                        </div>
+                    </ng-template>
+                </div>
+            </td>
+            <td class="left align-middle">
+                {{ result.sku }}
+            </td>
+            <td class="left align-middle">
+                {{ result.name }}
+            </td>
+            <td class="left align-middle">
+                {{ result.createdAt }}
+            </td>
+            <td class="left align-middle">
+                {{ result.openingStock }}
+            </td>
+            <td class="left align-middle">
+                {{ result.stockOnHand }}
+            </td>
+            <td class="left align-middle">
+                {{ result.closingStock }}
+            </td>
+            <td class="left align-middle">
+                {{ result.defaultPrice }}
+            </td>
+            <td class="left align-middle">
+                {{ result.customerGroup }}
+            </td>
+            <td class="left align-middle">
+                {{ result.segmentPrice }}
+            </td>
+            <!-- <td class="left align-middle">
+                <vdr-table-row-action
+                    class="edit-button"
+                    iconShape="eye"
+                    [label]="'View'"
+                    linkTo="./catalog/products/{{result.productId}};id={{result.productId}};tab=variants"
+                ></vdr-table-row-action>
+            </td> -->
+        </ng-template>
+    </vdr-data-table>
+</div>

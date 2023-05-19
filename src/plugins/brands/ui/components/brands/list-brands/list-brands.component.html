@@ -1,0 +1,66 @@
+<vdr-action-bar>
+    <vdr-ab-right>
+        <vdr-action-bar-items locationId="collection-list"></vdr-action-bar-items>
+        <button
+            class="btn btn-primary"
+            [disabled]="!(['CreateBrands']| hasPermission)"
+            [routerLink]="['/extensions/catalog/add-brands']"
+        >
+            <clr-icon shape="add"></clr-icon>
+            Add Brand
+        </button>
+    </vdr-ab-right>
+</vdr-action-bar>
+<div class="content-container" *ngIf="salesListIsLoading">
+    <div class="content-area centered-content-area">
+        <clr-spinner></clr-spinner>
+    </div>
+</div>
+<vdr-data-table
+    *ngIf="!salesListIsLoading"
+    [items]="salesList"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="salesList.length"
+    [currentPage]="currentPage"
+    (pageChange)="setPage($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>   
+    <ng-template let-result="item">
+        <td class="left align-middle image-col">
+            <img
+                [src]="result.icon | assetPreview: 'tiny'"
+            />
+        </td>
+        <td class="left align-middle">
+            {{ result.name }}
+        </td>
+        <td class="right align-middle buttons-col">
+            <vdr-dropdown>
+                <button type="button" class="btn btn-link btn-sm" vdrDropdownTrigger>
+                    {{ 'common.actions' | translate }}
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <vdr-dropdown-menu vdrPosition="bottom-right">
+                    <button type="button" class="btn btn-icon btn-link" 
+                        [disabled]="!(['UpdateBrands','UpdateCatalog'] | hasPermission)"
+                        aria-label="home" routerLink="/extensions/catalog/brands/{{result.id}}">
+                        <clr-icon shape="edit"></clr-icon>
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-icon btn-link" 
+                        [disabled]="!(['ReadBrands','UpdateBrands', 'UpdateCatalog','ReadCatalog'] | hasPermission)"
+                        aria-label="home" routerLink="/extensions/catalog/brands/{{result.id}}">
+                        <clr-icon shape="eye"></clr-icon>
+                        View
+                    </button>
+                    <button type="button" class="btn btn-link" 
+                        [disabled]="!(['DeleteBrands','DeleteCatalog'] | hasPermission)"
+                        (click)="deleteBrand(result.id)">
+                        <clr-icon shape="trash" class="is-danger"></clr-icon>
+                        {{ 'common.delete' | translate }}
+                    </button>
+                </vdr-dropdown-menu>
+            </vdr-dropdown>
+        </td>
+    </ng-template>
+</vdr-data-table>

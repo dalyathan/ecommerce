@@ -1,0 +1,50 @@
+<div id="whole-window">
+    <div class="clr-row">
+        <div class="btn-group btn-sm">
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-2" id="btn-demo-radio-01" (click)="weeklyData($event)" checked>
+                <label for="btn-demo-radio-01">This Week</label>
+            </div>
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-2" id="btn-demo-radio-02" (click)="monthlyData($event)">
+                <label for="btn-demo-radio-02">This Month</label>
+            </div>
+            <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios-2" id="btn-demo-radio-03" (click)="yearlyData($event)">
+                <label for="btn-demo-radio-03">This Year</label>
+            </div>
+            <div class="btn-group-overflow">
+                <button class="btn dropdown-toggle" (click)="toggleDropdown($event)">
+                    {{salesStateVisible}} <clr-icon shape="ellipsis-horizontal"></clr-icon>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="btn" (click)="setSalesState(0)">Adding Items</button>
+                    <button class="btn" (click)="setSalesState(1)">Arranging Payment</button>
+                    <button class="btn" (click)="setSalesState(2)">Payment Authorized</button>
+                    <button class="btn" (click)="setSalesState(3)">Payment Settled</button>
+                    <button class="btn" (click)="setSalesState(4)">Shipped</button>
+                    <button class="btn" (click)="setSalesState(5)">Delivered</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clr-row clr-justify-content-center">
+        <canvas id="salesChart" class="graph" *ngIf="!errorFetchingData && !isLoading">
+        </canvas>
+        <div class="alert alert-danger" role="alert" *ngIf="errorFetchingData && !isLoading">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        Error Fetching Data
+                    </span>
+                </div>
+            </div>
+        </div>
+        <span class="spinner spinner-lg" *ngIf="isLoading">
+            Loading...
+        </span>
+    </div>
+</div>

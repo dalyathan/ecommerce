@@ -1,0 +1,14 @@
+<div class="content-container">
+    <div class="content-container" *ngIf="salesListIsLoading">
+        <clr-spinner clrSmall></clr-spinner>
+    </div>
+    <clr-select-container>
+        <select clrSelect *ngIf="!salesListIsLoading && (['ReadIndustries','UpdateIndustries', 'UpdateCatalog','ReadCatalog']) | hasPermission" (change)="updateFormControl()" 
+        [disbaled]="!(['UpdateIndustries', 'UpdateCatalog'] | hasPermission)" (change)="updateFormControl()" [(ngModel)]="dummySelectModel" multiple>
+            <option [ngValue]="null">--Select Industry--</option>
+            <option [ngValue]="sale" *ngFor="let sale of salesList"
+                [attr.selected]="(formControl.value != null && formControl.value.id == sale.id)?true:null">{{sale.name}}</option>
+        </select>
+        <clr-control-helper>Press Ctrl to select multiple industries</clr-control-helper>
+    </clr-select-container>
+</div>

@@ -1,0 +1,179 @@
+<div class="content-container" *ngIf="salesListIsLoading">
+    <div class="content-area centered-content-area">
+        <clr-spinner></clr-spinner>
+    </div>
+</div>
+<div *ngIf="!salesListIsLoading">
+    <clr-accordion>
+        <clr-accordion-panel>
+          <clr-accordion-title>Filters</clr-accordion-title>
+          <clr-accordion-content *clrIfExpanded>
+    <div class="clr-row">
+        <div class="clr-col-sm-12 clr-col-lg-4 clr-align-self-sm-start">
+            <label>Refunded Amount</label>
+            <input clrInput type="number" [(ngModel)]="filter.amount" step="0.01" (input)="doesContentReflectFilter=false"/>
+        </div>
+        <div class="clr-col-sm-12 clr-col-lg-4 clr-align-self-sm-start">
+            <div class="clr-row">
+                <div class="clr-col-sm-4 clr-col-2">
+                    <label>Order Placed After</label>
+                    <vdr-datetime-picker 
+                        id="fromDate"
+                        [(ngModel)]="from"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                    ></vdr-datetime-picker>
+                </div>
+            </div>
+                <!-- [max]="to ?? today" -->
+        </div>
+        <div class="clr-col-lg-4 clr-align-self-sm-start clr-col-sm-12">
+            <div class="clr-row">
+                <div class="clr-col-sm-4 clr-col-2">
+                    <label>Order Placed Before</label>
+                    <vdr-datetime-picker 
+                        id="toDate"
+                        [(ngModel)]="to"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                        ></vdr-datetime-picker>
+                </div>
+            </div>
+                <!-- [min]="from"
+                [max]="today" -->
+        </div>
+        <div>
+            
+        </div>
+        <div class="clr-col-lg-12 clr-align-self-sm-center clr-col-sm-12 little-offset">
+            <div class="clr-row">
+                <div class="clr-col-md-2 clr-col-sm-12 clr-col-lg-4">
+                    <clr-spinner *ngIf="excelLoading" clrMedium></clr-spinner>
+                    <vdr-dropdown *ngIf="!excelLoading">
+                        <button class="btn btn-outline" vdrDropdownTrigger>
+                            <clr-icon shape="plus"></clr-icon>
+                            Export to
+                        </button>
+                        <vdr-dropdown-menu vdrPosition="bottom-left">
+                            <button
+                                type="button"
+                                vdrDropdownItem
+                                (click)="generatePDF()"
+                                [attr.disabled] ="salesList.length == 0?'disabled':null"
+                            >
+                                PDF
+                            </button>
+                            <button
+                                type="button"
+                                vdrDropdownItem
+                                (click)="exportToExcel()"
+                                [attr.disabled] ="salesList.length == 0?'disabled':null"
+                            >
+                                EXCEL
+                            </button>
+                        </vdr-dropdown-menu>
+                    </vdr-dropdown>
+                </div>
+                <div class="clr-col-md-2 clr-col-sm-12">
+                    <div *ngIf="!excelLoading">
+                        <button
+                            class="btn btn-primary"
+                            (click)="getCompletedOrders()"
+                            >
+                            <clr-icon shape="filter-grid"></clr-icon>
+                            Apply Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="clr-col-lg-2 clr-align-self-sm-center clr-col-sm-12 little-offset">
+            <clr-spinner *ngIf="excelLoading"></clr-spinner>
+            <div *ngIf="!excelLoading">
+                <button
+                    class="btn btn-primary"
+                    (click)="getCompletedOrders()"
+                    >
+                    <clr-icon shape="filter-grid"></clr-icon>
+                    Apply Filter
+                </button>
+            </div>
+        </div> -->
+    </div>
+    </clr-accordion-content>
+    </clr-accordion-panel>
+    </clr-accordion>
+</div>
+<div #formattedPdf>
+    <div class="clr-row">
+        <div class="clr-col" style="margin-left: 2vw !important;">
+            <div class="card" *ngIf="doesContentReflectFilter && salesList.length">
+                <div class="card-block">
+                    <h4 class="card-title">Ethiolab Sales Report</h4>
+                    <p class="card-text">
+                        {{header}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-4" style="margin-right: 2vw !important;">
+            <img src="/assets/logo.png" style="width:30vw;height:auto;"/>
+        </div>
+    </div>
+    <vdr-data-table
+        *ngIf="!salesListIsLoading"
+        [items]="salesList"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="salesList.length"
+        [currentPage]="currentPage"
+        (pageChange)="setPage($event)"
+        (itemsPerPageChange)="setItemsPerPage($event)"
+    >   
+        <!-- <vdr-dt-column></vdr-dt-column> -->
+        <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+        <ng-template let-result="item">
+            <td class="left align-middle">
+                <a href="./orders/{{result.orderId}}" *ngIf="result.orderId!=-1">
+                    {{ result.orderCode }}
+                </a>
+                <span *ngIf="result.orderId==-1">
+                    {{ result.orderCode }}
+                </span>
+            </td>
+            <td class="left align-middle">
+                {{ result.refunded }}
+            </td>
+            <td class="left align-middle">
+                <a href="./customer/customers/{{result.customerId}}" *ngIf="result.customerId!=-1">
+                    {{ result.customer }}
+                </a>
+                <span *ngIf="result.customerId==-1">
+                    {{ result.customer }}
+                </span>
+            </td>
+            <td class="left align-middle">
+                {{ result.purchaseDate }}
+            </td>
+            <td class="left align-middle">
+                {{ result.price }}
+            </td>
+            <td class="left align-middle">
+                {{ result.paymentMethod }}
+            </td>
+            <td class="left align-middle">
+                {{ result.refundedAmount }}
+            </td>
+            <td class="left align-middle">
+                {{ result.refundType }}
+            </td>
+            <td class="left align-middle">
+                <a href="./settings/administrators/{{result.refundedById}}" *ngIf="result.refundedById!=-1">
+                    {{ result.refundedBy }}
+                </a>
+                <span *ngIf="result.refundedById==-1">
+                    {{ result.refundedBy }}
+                </span>
+            </td>
+        </ng-template>
+    </vdr-data-table>
+</div>

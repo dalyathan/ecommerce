@@ -1,0 +1,85 @@
+
+
+<div>
+   <!-- <button (click)="refresh()" class="delete-btn">Refresh</button> -->
+<clr-tabs>
+   <clr-tab>
+       <button clrTabLink id="link1">Not Readed</button>
+       <clr-tab-content id="content1" *clrIfActive>
+         <button class="btn"   (click)="downloadAll(true)">Download All As Pdf</button>
+
+         <div id = 'main-quotes'>
+            <div *ngFor="let message of messages; let i = index" key ="message.id">
+               <div *ngIf="!message.is_seen" >
+                <div class="box">{{i + 1}}) 
+                  From: {{message.phone_number}} 
+                  <div class="title">Title: {{message.email}}</div> 
+                  <div class="date">sent at  {{message.createdAt |date:'medium'}}</div> 
+                  status: <div *ngIf="!message.is_seen" class='new'>new</div> 
+                  <div *ngIf="message.is_seen" class='not-new'>not new</div> 
+                <div class="buttons-parent">
+                   <button class="btn" (click)="go(message.id)"
+                   [disabled]="!(['ReadContactUs'] | hasPermission)">View...</button>
+                   <button *ngIf="!message.isseen" class="btn btn-success" (click)="makeMessageSeen(message.id)"
+                   [disabled]="!(['UpdateContactUs'] | hasPermission)">Mark As read</button>
+                   <button class="btn btn-danger" (click)="delete(message.id)"
+                     [disabled]="!(['DeleteContactUs'] | hasPermission)">
+                     Delete
+                  </button>
+                   <!-- <button class="btn" (click)="download(message)"
+                     [disabled]="!(['ReadContactUs'] | hasPermission)">
+                     Download As Pdf
+                  </button> -->
+                </div>
+             </div>
+            </div>
+            </div>
+         </div>
+         <div *ngIf="messages.length==0">No Messages Found</div>
+         <button (click)="refresh()" class="delete-btn">Refresh</button>
+       </clr-tab-content>
+   </clr-tab>
+   <clr-tab>
+       <button clrTabLink>Readed</button>
+       <clr-tab-content *clrIfActive="true">
+         <button class="btn" (click)="downloadAll(true)">Download All As Pdf</button>
+
+         <div id = 'main-quotes' >
+            <div *ngFor="let message of messages; let i = index" key ="message.id">
+               <div *ngIf="message.is_seen" >
+                <div class="box">{{i + 1}}) From: {{message.phone_number}} 
+                  <div class="title">Title: {{message.email}}</div> 
+                  <div class="date">sent at  {{message.createdAt|date:'medium'}}</div> 
+                  status: <div *ngIf="!message.is_seen" class='new'>new</div> 
+                  <div *ngIf="message.is_seen" class='not-new'>not new</div> 
+                <div class="buttons-parent">
+                   <button class="btn" (click)="go(message)">View...</button>
+                   <!-- <button *ngIf="!message.isseen" class="btn btn-success" (click)="inv(message.id)">Mark As read</button> -->
+                   <button class="btn btn-danger" (click)="delete(message.id)"
+                   [disabled]="!(['DeleteContactUs'] | hasPermission)">Delete</button>
+                   <!-- <button class="btn" (click)="download(message)"
+                   [disabled]="!(['ReadContactUs'] | hasPermission)">Download As Pdf</button> -->
+                </div>
+             </div>
+            </div>
+            </div>
+         </div>
+         <div *ngIf="messages.length==0">No Messages Found</div>
+        
+       </clr-tab-content>
+   </clr-tab>
+</clr-tabs>
+<clr-modal [(clrModalOpen)]="isModalVisible">
+   <h2 class='modal-title'>Contact Us Message Details</h2>
+   <div class='modal-body'>   
+
+      First Name: {{modalFirstName}}<br />
+      Last Name: {{modalLastName}}<br />
+      Email: {{modalFromEmail}}<br />
+      From Phone: {{modalFromPhone}}<br /> 
+     
+      Message:    {{modalMessage}} <br />
+     
+   </div>   
+</clr-modal>
+</div>

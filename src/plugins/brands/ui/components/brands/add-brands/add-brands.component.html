@@ -1,0 +1,88 @@
+<div class="popupContainer">
+<div class="card">
+      <!-- <input #fileInput type="file" style="display: none;" (change)="filePicked($event)"> -->
+      <button class="btn btn-primary" (click)="selectAsset()" 
+      [disabled]="
+        (!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+        (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null)
+      ">
+          Change asset
+      </button>
+      <button class="btn btn-secondary" (click)="resetAsset()" *ngIf="routeId"
+        [attr.disabled]="(pickedImage === undefined  ? 'disabled':null) || 
+        ((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+        (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))" 
+        >
+        Reset asset
+      </button>
+      <button class="btn btn-danger" (click)="removeSelectedImage()" *ngIf="!routeId"
+        [attr.disabled]="(pickedImage === undefined  ? 'disabled':null) || 
+        ((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+        (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))" 
+      >
+        Remove asset
+      </button>
+      <div style="width:100%">
+        <!-- <form [formGroup]="brandForm"> -->
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <img [src]="image" #displayImg class="input-field"/>
+              </li>
+              <li class="list-group-item">
+                <h4 class="card-title">Title</h4>
+                    <input
+                        class="input-field"
+                        id="title"
+                        type="text"
+                        [(ngModel)]="name"
+                        [disabled]="((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+                        (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))"
+                        maxlength="100"
+                        (change)="markAsDirty()"
+                    />
+                    <div style="text-align: right">
+                      <span>{{name !== null? name.length:0}}/100</span>
+                    </div>
+              </li>
+              <li class="list-group-item">
+                  <h4 class="card-title">Description</h4>
+                  <vdr-rich-text-editor [(ngModel)]="description" 
+                  [readonly]="description.length > 10000 || 
+                  ((!(['UpdateBrands'] | hasPermission) && this.routeId != null) ||
+                  (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))">
+                  </vdr-rich-text-editor>
+                  <div style="text-align: right">
+                    <span>{{description.length}}/10000</span>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                <h4 class="card-title">Products</h4>
+                <button (click)="select()" 
+                  class="btn btn-sm btn-secondary">
+                  {{ 'common.items-selected-count' | translate: { count: initialSelectionIds !== null ? initialSelectionIds.length : 0 } }}...
+                </button>
+              <!-- [disabled]="((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+                          (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))" -->
+                <button class="btn btn-sm circular-button" 
+                  [attr.disabled]="(initialSelectionIds.length == 0?'disabled':
+                  ((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != undefined) ||
+                  (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == undefined))?'disabled':null)"
+                  (click)="clearProductSelection()">
+                  <clr-icon shape="times"></clr-icon>
+                </button>
+              </li>
+          </ul>
+        <!-- </form> -->
+      <div class="card-footer">
+        <button class="btn btn-primary" (click)="create()" 
+          [disabled]="((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+          (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))"
+          *ngIf="this.routeId == null">Submit</button>
+        <button class="btn btn-primary" (click)="edit()" 
+          [disabled]="((!(['UpdateBrands','UpdateCatalog'] | hasPermission) && this.routeId != null) ||
+          (!(['CreateBrands','CreateCatalog'] | hasPermission) && this.routeId == null))"
+          *ngIf="this.routeId != null">Update</button>
+      </div>
+  </div>
+</div>
+</div>

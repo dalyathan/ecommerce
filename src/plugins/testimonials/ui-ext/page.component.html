@@ -1,0 +1,58 @@
+<div id = 'main'>
+    <vdr-action-bar>
+        <vdr-ab-right>
+            <button class="btn btn-primary" (click) = "isModalVisible = true" [disabled]="!(['UpdateCms'] | hasPermission)"> 
+                <clr-icon shape="add"></clr-icon> NEW TESTIMONIAL
+            </button>
+        </vdr-ab-right>
+    </vdr-action-bar>
+    <div id="t-list">
+        <div *ngFor = "let testimonial of testimonials" class="testi">
+            <div class="card">
+                <div class="card-img">
+                    <img [src]="getPicLocation(testimonial.pic_location)">
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">{{testimonial.name}}</h4>
+                    <p class="card-text" [innerHTML]="makeInlineCssSafe(testimonial.msg)">
+                    </p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">{{testimonial.person_position}}</li>
+                </ul>
+                <div class="card-footer">
+                    <button class="txt-btn" (click)="changePic(testimonial.id)"
+                    [disabled]="!(['UpdateCms'] | hasPermission)">Change Testimonial Picture</button>
+                    <button class=" txt-btn danger" (click)="removeTest(testimonial.id)"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"> Delete</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <clr-modal [(clrModalOpen)]="isModalVisible" [clrModalSize]="'xl'">
+        <h3 class="modal-title">Form</h3>
+        <div class="modal-body">
+            <div class="card-img">
+                <img [src]="logoAssetPreview">
+            </div>
+            <clr-input-container>
+                <label>Name</label>
+                <input clrInput placeholder="Name " name="input" [(ngModel)]="modalName" />
+              </clr-input-container>
+            <vdr-rich-text-editor [(ngModel)]="modalMsg" 
+                label="Message" [readonly]="modalMsg.length > 10000">
+            </vdr-rich-text-editor>
+           <clr-input-container>
+            <label>Position of User</label>
+            <input clrInput name="input" [(ngModel)]="modalPos" />
+          </clr-input-container>
+       </div>
+       <div class="modal-footer">
+        <button class="btn" (click)="ImageDialog()"
+        [disabled]="!(['UpdateCms'] | hasPermission)">Upload Image</button>
+        <button class="btn btn-success" (click)="submit()"
+        [disabled]="!(['UpdateCms'] | hasPermission)">Submit</button>
+       </div>
+       
+   </clr-modal>
+</div>

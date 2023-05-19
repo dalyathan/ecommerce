@@ -1,0 +1,69 @@
+.popupContainer {
+    width: fit-content;
+    margin: auto;
+    .card-img {
+      background-size: 100% 100% !important;
+    }
+    .card {
+      max-width: 600px;
+      width: auto;
+    }
+
+    #displayImg{
+      display:  block !important;
+    }
+  
+    .card-img {
+      height: fit-content;
+    }
+  
+    .card > button {
+      float: right;
+    }
+  
+    .text {
+      padding: 2.5rem;
+    }
+  
+    .text > div {
+      margin-bottom: 1.4rem;
+    }
+  
+    .overview {
+      text-transform: uppercase;
+      line-height: 1.4;
+      font-size: 1rem;
+    }
+  
+    .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: black;
+      font-size: 2.25rem;
+      line-height: 1.2;
+    }
+  
+    .description {
+      font-size: 1rem;
+      color: white;
+    }
+    .description > p {
+        font-size: 1rem !important;
+        color: white !important;
+    }
+    .input-field {
+      width: 100%;
+    }
+    .circular-button{
+      width: 16px !important;
+      min-width: 16px !important;
+      height: 16px !important;
+      min-height: 16px !important;
+      border-radius: 50% !important;
+      padding:  0px 0px  !important;
+    }
+    clr-icon{
+      margin-top: -6.5px !important;
+    }
+  }
+  

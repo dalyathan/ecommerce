@@ -1,0 +1,33 @@
+<div class="limit-height">
+    <clr-datagrid (clrDgSingleSelectedChange)="isStoreLocationValueChanged($event)" 
+        [clrDgSingleSelected]="dataList[selectedIndex]">
+        <clr-dg-placeholder>No cities added</clr-dg-placeholder>
+        <clr-dg-action-bar>
+            <button class="btn btn-sm" (click)="addACity()">Add a City</button>
+        </clr-dg-action-bar>
+        <clr-dg-column>City</clr-dg-column>
+        <clr-dg-column>{{chargingMetrics}} From/Price of Store City</clr-dg-column>
+        <clr-dg-row *ngFor="let location of dataList" [clrDgItem]="location">
+            <clr-dg-action-overflow>
+                <button class="action-item" (click)="onDelete(location)">Delete</button>
+            </clr-dg-action-overflow>
+            <clr-dg-cell class="left align-middle">
+                <input clrInput placeholder="city" name="input" [ngModel]="location.city" 
+                (change)="cityValueChanged($event,location.id)"/>
+            </clr-dg-cell>
+             <clr-dg-cell class="left align-middle">
+                <vdr-affixed-input
+                        [prefix]="location.isStoreLocation?'ETB':''"
+                        [suffix]="location.isStoreLocation?'':chargingMetrics"
+                    >
+                    <input clrInput placeholder="distance" name="einput" 
+                    [ngModel]="location.distanceFromStoreLocation" 
+                    (change)=" kmsValueChanged($event,location.id)"
+                    [attr.disabled]="!supportsShippingFromStoreLocation && location.isStoreLocation && !supportsShippingFromStoreLocation?'disabled':null"
+                    type="number" step="0.01" />
+                </vdr-affixed-input>
+            </clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>{{ dataList[selectedIndex]? 'The store is located at '+dataList[selectedIndex].city:''}}</clr-dg-footer>
+    </clr-datagrid>
+</div>

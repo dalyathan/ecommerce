@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Info</title>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPUDU0R4IutXMlinajGnm1tNQvUpoSNVs&callback=initMap">
+</script>
+
+</head>
+<body>
+<div class="heroSectionContainer">
+<div class="card">
+    <button class="btn btn-primary" (click)="pickAsset()" >Change Company Logo</button>
+    <div class="card-img" [ngStyle]="{background: 'url(' + logoAssetPreview + ')'}" >
+    </div>
+    <div class="card-block">
+        <div class="text">
+            <div class="title">Company Information</div>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+      <p class="card-title">Company Name</p>
+      <input
+              class="input-field"
+              [disabled]="!(['UpdateCms'] | hasPermission)"
+              id="overview"
+              type="text"
+
+          [(ngModel)] = "company_name"
+      /></li>
+      <li class="list-group-item"  >
+          <p class="card-title">Company Location</p>
+          <input
+                  class="input-field"
+                  [disabled]="!(['UpdateCms'] | hasPermission)"
+                  id="button"
+                  type="text"
+                  
+              [(ngModel)] = "location_text"
+          />
+      </li>
+        <li class="list-group-item">
+    <p class="card-title">Company Phone Number</p>
+    <input
+            class="input-field"
+            [disabled]="!(['UpdateCms'] | hasPermission)"
+            id="overview"
+            type="text"
+
+        [(ngModel)] = "phone_number"
+        
+    /></li>
+    <li class="list-group-item">
+        <p class="card-title">Company Email</p>
+        <input
+                class="input-field"
+                [disabled]="!(['UpdateCms'] | hasPermission)"
+                id="overview"
+                type="email"
+    
+            [(ngModel)] = "email"
+            
+        /></li>
+        <li class="list-group-item">
+            <p class="card-title">Instagram Address</p>
+            <input
+                    class="input-field"
+                    id="title"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    type="text"
+                    [(ngModel)] = "instagram_address"
+            />
+        </li>
+        <li class="list-group-item">
+            <p class="card-title">Twitter Address</p>
+                <input
+                    class="input-field"
+                    id="overview"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    type="text"
+                    [(ngModel)] = "twitter_address"
+                /></li>
+             <li class="list-group-item">
+            <p class="card-title">Facebook Address</p>
+                 <input
+                    class="input-field"
+                    id="overview"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    type="text"
+                     [(ngModel)] = "facebook_address"
+                  
+                /></li>
+             <li class="list-group-item">
+            <p class="card-title">Linkdin Address</p>
+                <input
+                    class="input-field"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    id="overview"
+                    type="text"
+                    [(ngModel)] = "linkdin_address"
+            /></li>
+        <li class="list-group-item">
+            <p class="card-title">Youtube Address</p>
+            <input
+                    class="input-field"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    id="description"
+                    type="text"
+                  
+
+                [(ngModel)] = "youtube_address"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Telegram Address</p>
+            <input
+                    class="input-field"
+                    [disabled]="!(['UpdateCms'] | hasPermission)"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "telegram_address"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Telebirr</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "tele_birr"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Commercial Bank</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "commercial_bank"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Berhan Bank</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "berhan_bank"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Dashen Bank</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "dashen_bank"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Abyssinia Bank</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "ab_bank"
+            />
+        </li>
+        <li class="list-group-item"  >
+            <p class="card-title">Oromia Bank</p>
+            <input
+                    class="input-field"
+                    id="button"
+                    type="text"
+                    
+                [(ngModel)] = "or_bank"
+            />
+        </li>
+        <li class="list-group-item">
+            Location of the company
+                <agm-map
+                    [latitude]="latitude"
+                    [longitude]="longitude"
+                    class="map-height"
+                    (mapClick)="mapClicked($event)">
+                    <agm-marker 
+        
+                        [latitude]="latitude" 
+        
+                        [longitude]="longitude">    
+        
+                    </agm-marker>
+                </agm-map>
+        </li>
+    </ul>
+    <div class="card-footer">
+        <button class="btn btn-sm btn-outline-primary " (click)="sendVal()"
+        [disabled]="!(['UpdateCms'] | hasPermission)">Update</button>
+     <!--    <button class="btn btn-sm btn-outline-danger" >Reset</button> -->
+    </div>
+  
+</div>
+</div>
+</body>
+</html>

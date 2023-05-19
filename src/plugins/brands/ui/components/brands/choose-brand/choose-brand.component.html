@@ -1,0 +1,12 @@
+<div class="content-container">
+    <div class="content-container" *ngIf="salesListIsLoading">
+        <clr-spinner clrSmall></clr-spinner>
+    </div>
+    <select clrSelect *ngIf="!salesListIsLoading && (['ReadBrands','UpdateBrands', 'UpdateCatalog','ReadCatalog']) | hasPermission" (change)="updateFormControl()" 
+    [disbaled]="!(['UpdateBrands', 'UpdateCatalog'] | hasPermission)"    
+    [(ngModel)]="dummySelectModel">
+        <option [ngValue]="null">--Select Brand--</option>
+        <option [ngValue]="sale" *ngFor="let sale of salesList"
+            [attr.selected]="(formControl.value != null && formControl.value.id == sale.id)?true:null">{{sale.name}}</option>
+    </select>
+</div>

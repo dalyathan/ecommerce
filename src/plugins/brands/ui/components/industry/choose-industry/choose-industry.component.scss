@@ -1,0 +1,18 @@
+.centered-content-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+option:checked{
+    background-color: #5fafef !important;
+}
+
+select:focus{
+    // border: 5px dotted violet !important;
+    option:checked{
+        background-color: #5fafef !important;
+        // border: 5px dotted black !important;
+    }
+}
+    

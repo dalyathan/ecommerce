@@ -1,0 +1,13 @@
+<div [hidden]="!show" id="detail">
+   
+   <span> Sender Email: {{quoteData.getContactUsMessage.email}}</span>
+   <span>Sender Phone:  {{quoteData.getContactUsMessage.phone_number }} </span>
+ 
+   <span> Senderr Name  {{quoteData.getContactUsMessage.first_name}} {{quoteData.getContactUsMessage.last_name}}</span>
+  
+   <span> Message:  {{quoteData.getContactUsMessage.message}} </span>
+  
+   <span> sent at:  {{quoteData.getContactUsMessage.createdAt}} </span>
+   <button class = 'mark-btn' (click)="goHome()">Back</button>
+</div>
+<span [hidden]="show">Loading...</span>

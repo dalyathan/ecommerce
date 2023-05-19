@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "lib": [
+      "ES2021.String"
+    ],
+    "paths": {
+      "os": [
+        "./node_modules/crypto-browserify"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "migration.ts",
+    "populate.ts",
+    "gulpfile.ts",
+    "migrations/*.ts",
+    "src/plugins/**/ui-ext/*",
+    "src/plugins/**/ui/*",
+    "src/plugins/**/ui-extensions/*",
+    "**/*.spec.ts",
+    "src/ui-extensions/*"
+  ],
+  "angularCompilerOptions": {
+    "types" : ["node"]
+  }
+}

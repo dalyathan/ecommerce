@@ -1,0 +1,6 @@
+<button class="btn btn-sm" (click)="selectProducts()">{{productIds.length}} items selected...</button>
+<button class="btn btn-sm circular-button" 
+    [attr.disabled]="productIds.length == 0?'disabled':null"
+    (click)="clearProductSelection()">
+    <clr-icon shape="times"></clr-icon>
+</button>

@@ -1,0 +1,51 @@
+<!-- <div class="clr-row"> -->
+<clr-accordion>
+    <clr-accordion-panel>
+        <clr-accordion-title>Filters</clr-accordion-title>
+        <clr-accordion-content *clrIfExpanded>
+            <div class="clr-col-2">
+                <div class="clr-row">
+                    <label>Adminstrators</label>
+                    <div>
+                        <button class="btn btn-sm" (click)="selectAdmins()">
+                            {{filter.adminIds.length}} Admins Selected...
+                        </button>
+                        <button class="btn btn-sm circular-button" 
+                            [attr.disabled]="filter.adminIds.length == 0?'disabled':null"
+                            (click)="filter.adminIds=[];doesContentReflectFilter=false;">
+                        <clr-icon shape="times"></clr-icon>
+                    </button>    
+                    </div>
+                </div>
+                <div class="clr-row">
+                    <label>From</label>
+                    <vdr-datetime-picker 
+                        id="fromDate"
+                        [(ngModel)]="from"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                        ></vdr-datetime-picker>
+                </div>
+                <div class="clr-row">
+                    <label>To <small>(not including)</small></label>
+                    <vdr-datetime-picker 
+                        id="toDate"
+                        [(ngModel)]="to"
+                        [max]="today"
+                        (click)="doesContentReflectFilter=false"
+                        ></vdr-datetime-picker>
+                </div>
+                <div class="clr-row">
+                    <button
+                        class="btn btn-primary"
+                        (click)="apply()"
+                        >
+                        <clr-icon shape="filter-grid"></clr-icon>
+                        Apply Filter
+                    </button>
+                </div>
+            </div>
+        </clr-accordion-content>
+    </clr-accordion-panel>
+</clr-accordion>
+<!-- </div> -->

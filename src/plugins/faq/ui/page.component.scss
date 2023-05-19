@@ -1,0 +1,55 @@
+#upper{
+    font-size: 2rem;
+    font-style: italic;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: lightblue;
+}
+#bod{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 30vh;
+}
+.width-100{
+    max-width: 500px !important;
+}
+.fq{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+.max-length{
+    display: block !important;
+    width: 100% !important;
+}
+.box{
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow:  2px 2px 2px #888888; ;
+}
+.middle-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.model{
+    color:black
+}
+.card-text{
+    padding-left: 3.5vw !important;
+}
+.card-footer, .list-group-item{
+    padding-left: 1.5vw !important;
+}
+.card-title{
+    padding-left: 1vw !important;
+}
+.deep{
+    height: 50%;
+}
+.float-right{
+    margin-left: 95% !important;
+}

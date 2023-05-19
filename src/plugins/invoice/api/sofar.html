@@ -1,0 +1,100 @@
+<div>
+    <div class="clr-co w-100">
+    <div class="clr-justify-content-center clr-row">
+    <div class="1vh; line-height:">
+    <h3 style="text-align:center"><span style="font-size:18px"><strong>ኢትዮላብ መሣሪያዎች አቅራቢ ኃ/የተ/የግ/ማህበር</strong></span></h3>
+    </div>
+    
+    <p style="text-align:center"><span style="font-size:18px">ETHIOLAB EQUIPMENT SUPPLY</span></p>
+    
+    <p style="text-align:center"><span style="font-size:12px"><strong>MOB</strong>:+251 912690739/ +251 912810539/ +251 111 264 829</span></p>
+    
+    <p style="text-align:right"><span style="font-size:16px">ቀን<u>&nbsp; {{date}}&nbsp;&nbsp;&nbsp; </u></span></p>
+    
+    <p style="text-align:center"><span style="font-size:16px">የተጨማሪ እሴት ታክስ</span></p>
+    
+    <p style="text-align:center"><span style="font-size:16px">Value Addes Tax Sales</span></p>
+    
+    <p style="text-align:center">የ እጅ በእጅ ሽያጭ ደረሰኝ</p>
+    
+    <p style="text-align:center"><span style="font-size:14px"><strong><u>CASH SALES INVOICE</u></strong></span></p>
+    
+    <p>ከ<sub><span style="font-size:9px">From</span>&nbsp;&nbsp; </sub><span style="font-size:12px"><strong>ኢትዮላብ መሣሪያዎች አቅራቢ ኃ/የተ/የግ/ማህበር</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ለ<sub>To &nbsp; </sub>{{ order.shippingAddress.fullName }}<sub><u> </u></sub></p>
+    
+    <p><span style="font-size:12px">አድራሻ: አ/አ ክ/ከ&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>ወ<u>&nbsp;&nbsp; &nbsp; </u>ቤ.ቁ&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; አድራሻ: አ/አ ክ/ከ&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>ወ<u>&nbsp;&nbsp; &nbsp; </u>ቤ.ቁ&nbsp;<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></span></p>
+    </div>
+    
+    <div class="clr-row">
+    <table style="width:100%">
+        <tbody>
+            <tr>
+                <td><br />
+                <br />
+                Thanks for your order!</td>
+            </tr>
+        </tbody>
+    </table>
+    &nbsp;
+    
+    <table style="width:100%">
+        <tbody>
+            <tr>
+                <td>{{#with order.shippingAddress }} {{ fullName }}<br />
+                {{#if company}} {{ company }}<br />
+                {{/if}} {{#if streetLine1}} {{ streetLine1 }} {{ streetLine2 }}<br />
+                {{/if}} {{#if postalCode}} {{ postalCode }}, {{ city }}<br />
+                {{/if}} {{#if country}} {{ country }}<br />
+                {{/if}} {{/with}} {{ customerEmail }}</td>
+                <td>Order: {{ order.code }}<br />
+                InvoiceNr: {{ invoiceNumber }}<br />
+                Date: {{ orderDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    {{#each order.lines }} {{/each}} {{#each order.discounts }} {{/each}}
+    <table style="width:100%">
+        <tbody>
+            <tr>
+                <td>{{ quantity }} x</td>
+                <td>{{ productVariant.name }}</td>
+                <td style="text-align:right">Br {{ formatMoney linePrice }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ description }}</td>
+                <td style="text-align:right">Br {{ formatMoney amount }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Shipping ex tax</td>
+                <td style="text-align:right">Br {{ formatMoney order.shipping }}</td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr /> {{#each order.taxSummary }} {{#if taxRate}} {{/if}} {{/each}}
+    <table style="width:100%">
+        <tbody>
+            <tr>
+            </tr>
+            <tr>
+                <td style="text-align:right">Subtotal</td>
+                <td style="text-align:right">Br {{ formatMoney order.total }}</td>
+            </tr>
+            <tr>
+                <td>Tax {{ taxRate }} %</td>
+                <td style="text-align:right">&euro;{{ formatMoney taxTotal }}</td>
+            </tr>
+            <tr>
+                <td><strong>Total inc. tax</strong></td>
+                <td style="text-align:right"><strong>&euro;{{ formatMoney order.totalWithTax }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    

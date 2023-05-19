@@ -1,0 +1,137 @@
+<vdr-action-bar>
+    <vdr-ab-right>
+        <vdr-action-bar-items locationId="collection-list"></vdr-action-bar-items>
+        <button
+            class="btn btn-primary"
+            [disabled]="!(['CreatePriceLists']| hasPermission)"
+            (click)="showCreateModal()"
+        >
+            <clr-icon shape="add"></clr-icon>
+            Add Price List
+        </button>
+        <button
+        class="btn btn-primary"
+        [disabled]="!(['CreatePriceLists']| hasPermission)"
+        (click)="showCreateModal(true)"
+    >
+        <clr-icon shape="add"></clr-icon>
+        Add Store Wide Discount
+    </button>
+    </vdr-ab-right>
+</vdr-action-bar>
+<clr-modal [(clrModalOpen)]="showMessage">
+    <h3 class="modal-title">{{this.currentlyBeingEditedPriceList == null?'Add':'Edit'}} Price List</h3>
+    <div class="modal-body">
+        <div class="popupContainer">
+            <div class="card">
+                <div style="width:100%">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <h4 class="card-title">Title</h4>
+                            <input
+                                class="input-field"
+                                id="title"
+                                type="text"
+                                maxlength="100"
+                                [(ngModel)]="title"
+                            />
+                            <div style="text-align: right">
+                              <span>0/100</span>
+                            </div>
+                      </li>
+                      <li class="list-group-item">
+                        <h4 class="card-title">Percent Discount {{this.routeId == null?'*':''}}</h4>
+                        <input
+                            class="input-field"
+                            id="title"
+                            [(ngModel)]="percentDiscount"
+                        />
+                      </li>
+                      <li class="list-group-item">
+                        <h4 class="card-title">{{isDiscountStoreWide?'Excluded ':''}}Products</h4>
+                        <button (click)="selectProductVariants()" class="btn btn-sm btn-secondary">
+                          {{ 'common.items-selected-count' | translate: { count: selectedProductVariantIds !== null ? selectedProductVariantIds.length : 0 } }}...
+                        </button>
+                        <button class="btn btn-sm circular-button" 
+                          [attr.disabled]="selectedProductVariantIds.length == 0?'disabled':null"
+                          (click)="clearProductSelection()">
+                          <clr-icon shape="times"></clr-icon>
+                        </button>
+                      </li>
+                      <li class="list-group-item" *ngIf="!isDiscountStoreWide">
+                        <h4 class="card-title">Customer Group  {{this.routeId == null?'*':''}}</h4>
+                        <ng-select 
+                            [addTag]="true"
+                            bindLabel="name"
+                            [multiple]="false"
+                            [items]="customerGroups"
+                            [(ngModel)]="selectedCustomerGroup">
+                            <ng-template ng-option-tmp let-item="item">
+                                {{item.name}}
+                            </ng-template>
+                        </ng-select>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showMessage=isDiscountStoreWide=false">Cancel</button>
+        <button class="btn btn-primary" (click)="create()" *ngIf="currentlyBeingEditedPriceList == null && !isDiscountStoreWide">Submit</button>
+        <button class="btn btn-primary" (click)="createStorewideDiscount()" *ngIf="currentlyBeingEditedPriceList == null && isDiscountStoreWide">Submit</button>
+        <button class="btn btn-primary" (click)="create()" *ngIf="currentlyBeingEditedPriceList != null && !isDiscountStoreWide">Update</button>
+        <button class="btn btn-primary" (click)="createStorewideDiscount()" *ngIf="currentlyBeingEditedPriceList != null && isDiscountStoreWide">Update</button>
+    </div>
+</clr-modal>
+<div class="content-container" *ngIf="priceListIsLoading">
+    <div class="content-area centered-content-area">
+        <clr-spinner></clr-spinner>
+    </div>
+</div>
+<vdr-data-table
+    *ngIf="!priceListIsLoading"
+    [items]="priceLists"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="priceLists.length"
+    [currentPage]="currentPage"
+    (pageChange)="setPage($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>   
+    <vdr-dt-column></vdr-dt-column>
+    <vdr-dt-column>Title</vdr-dt-column>
+    <vdr-dt-column>Percent discount</vdr-dt-column>
+    <vdr-dt-column>Customer Group</vdr-dt-column>
+    <vdr-dt-column></vdr-dt-column>
+    <vdr-dt-column></vdr-dt-column>
+    <ng-template let-result="item">
+        <td class="left align-left">
+            <img
+                [src]="result.productVariantAsset | assetPreview: 'tiny'"
+            />
+        </td>
+        <td class="left align-middle">
+            {{ result.title }}
+        </td>
+        <td class="left align-middle">
+            {{ result.percentDiscount }}
+        </td>
+        <td class="left align-middle">
+            {{ result.customergroup?result.customergroup.name:'' }}
+        </td>
+        <td class="left align-middle">
+            <input type="checkbox" clrToggle 
+            [disabled]="!(['DeletePriceLists']| hasPermission)"
+            [ngModel]="result.enabled" (change)="togglePriceList(result, $event)"/>
+            {{result.enabled ? 'Enabled':'Disabled'}}
+        </td>
+        <td class="left align-middle">
+            <button type="button" class="btn btn-icon btn-link"
+            [disabled]="!(['UpdatePriceLists']| hasPermission)"
+            aria-label="home" (click)="showEditModal(result, result.isPriceListStoreWide)">
+                <clr-icon shape="edit"></clr-icon>
+                Edit
+            </button>
+        </td>
+    </ng-template>
+</vdr-data-table>

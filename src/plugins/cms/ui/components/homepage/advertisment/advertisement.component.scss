@@ -1,0 +1,46 @@
+.advertContainer {
+  .card-img {
+    width: 35%;
+    height: auto;
+  }
+
+  .card {
+    display: inline-flex;
+  }
+
+  .text {
+    padding: 2.5rem;
+  }
+
+  .text > div {
+    margin-bottom: 1rem;
+  }
+
+  .overview {
+    text-transform: uppercase;
+    line-height: 1.4;
+    font-size: 0.7rem;
+  }
+
+  .title {
+    text-transform: uppercase;
+    color: black;
+    font-weight: lighter;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 1rem;
+    color: white;
+  }
+
+  .description > p {
+    font-size: 1rem !important;
+    color: white !important;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+}

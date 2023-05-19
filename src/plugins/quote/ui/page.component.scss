@@ -1,0 +1,88 @@
+@import 'variables';
+
+.new{
+    color: red;
+    display: inline;
+}
+.not-new{
+    color: blue;
+    display: inline;
+}
+.title{
+    color: blue;
+}
+.date{
+    color: orange;
+}
+.see-btn{
+    
+    width: 100%;
+    border: 0;  
+}
+.dropdown-item{
+    padding: 2% 0 !important;
+}
+.dropdown-menu{
+    padding: 0 !important;
+}
+#detail{
+    display: flex;
+    flex-direction: column;
+
+}
+.block{
+    border: 0;
+    background: lightgray;
+    box-shadow:  2px 2px 2px #888888; ;
+}
+#detail{
+    font-weight: bold;
+    color: black;
+    //background: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  //  background: red;
+}
+.tab-container{
+     display: flex;
+     justify-content: center;
+}
+#demoTabs{
+    display: flex;
+    justify-content: space-around;
+}
+@media only screen and (max-width: 600px) {
+   .buttons-parent{
+       flex-direction: row;
+       justify-items: space-evenly;
+       align-content: space-evenly;
+   }
+}
+.actions{
+display: flex;
+flex-direction: column;
+justify-content:space-between;
+}
+.mark-btn{
+    border: 0;
+    background: lightgray;
+}
+.delete-btn{
+    color: white;
+    background: #888888;
+
+    border: 0;
+   // position: absolute;
+    // right: 3%;
+    // bottom: 3%;
+}
+.box{
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow:  2px 2px 2px #888888; ;
+}
+.delete-btn:hover{
+    background: red;
+}

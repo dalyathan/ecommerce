@@ -1,0 +1,17 @@
+// #whole-window{
+//     width: 10vw !important;
+//     height: 13vw !important;
+// }
+$radio-width: 7vw;
+
+.radio-button{
+    width: var(--radio-width) !important;
+}
+
+.graph{
+    width: calc(var(--radio-width) * 3) !important;
+}
+
+.btn-group{
+    margin-right: 0!important;
+}

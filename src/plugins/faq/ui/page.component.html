@@ -1,0 +1,86 @@
+<div>
+    <vdr-action-bar>
+        <vdr-ab-right>
+            <button class="btn btn-primary" (click) = "isModalVisible = true">
+                <clr-icon shape="plus"></clr-icon> NEW FAQ
+            </button>
+        </vdr-ab-right>
+    </vdr-action-bar>
+  <vdr-data-table
+    [items]="faqs"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="faqs.length"
+    [currentPage]="currentPage"
+    (pageChange)="setPage($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>   
+    
+    <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+    <ng-template let-result="item">
+        <div class="card max-length">
+            <div class="card-block">
+                <h4 class="card-title" [innerHTML]="makeInlineCssSafe(result.question)"></h4>
+                <p class="card-text" [innerHTML]="makeInlineCssSafe(result.answer)">
+                </p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <!-- <div class="progress-block" style="width: 24%;"> -->
+                        <label style="font-weight: bolder;">Categories</label>
+                        <!-- <div> -->
+                            <vdr-chip *ngFor="let value of result.tags" [colorType]="'success'">{{value}}
+                            </vdr-chip>
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </li>
+                <li class="list-group-item">Created {{ toDate(result.createdAt) }}</li>
+                <li class="list-group-item">
+                    <clr-toggle-container>
+                        <clr-toggle-wrapper>
+                            <input type="checkbox" clrToggle [(ngModel)]="result.isEnabled"  
+                            [disabled]="!(['UpdateCms'] | hasPermission)"
+                            (change)=" (result.isEnabled) ? disableFaq(result.id) : enalbeFaq(result.id) " />
+                            <label>{{result.isEnabled ? 'Enabled':'Disabled'}}</label>
+                        </clr-toggle-wrapper>
+                    </clr-toggle-container>
+                </li>
+            </ul>
+            <div class="card-footer">
+                <button 
+                        class="btn" 
+                        (click) = "editFaqById(result.id, result.answer, result.question, result.tags)"
+                        [disabled]="!(['UpdateCms'] | hasPermission)"
+                    >
+                    <clr-icon shape="edit"></clr-icon>
+                    Edit
+                </button>
+                <button 
+                        class="btn btn-danger"  
+                        (click) = "deleteFaq(result.id)"
+                        [disabled]="!(['UpdateCms'] | hasPermission)"
+                    >
+                    <clr-icon shape="trash"></clr-icon>
+                    Delete
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</vdr-data-table>
+ 
+   
+      <clr-modal [(clrModalOpen)]="isModalVisible" [clrModalSize]="'lg'">
+         <h3 class="modal-title">Form</h3>
+         <div class="modal-body">
+            <vdr-rich-text-editor [(ngModel)]="modalQuestion" label="Question" [readonly]="modalQuestion.length > 10000">
+            </vdr-rich-text-editor>
+            <vdr-rich-text-editor [(ngModel)]="modalAnswer" label="Answer" 
+            [readonly]="modalAnswer.length > 10000 || !(['UpdateCms'] | hasPermission)">
+            </vdr-rich-text-editor>
+            <label style="font-weight: bolder;">Categories</label> 
+            <vdr-tag-selector [(ngModel)]="tagBeingEdited"></vdr-tag-selector>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" (click) = "submit()">Submit</button>
+        </div>
+    </clr-modal>
+</div> 

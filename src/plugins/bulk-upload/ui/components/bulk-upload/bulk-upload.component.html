@@ -1,0 +1,108 @@
+<div class="clr-row">
+    <div class="clr-col-lg-4 clr-col-sm-12">
+        <clr-input-container>
+            <label>
+                Excel File
+                <br>
+            </label>
+            <input clrInput type="file" [(ngModel)]="excelFile" accept=".xls,.xlsx"
+            [disabled]="!(['CreateBulkUpload'] | hasPermission)"
+            (change)="parseExcelFile($event)"/>
+        </clr-input-container>
+    </div>
+    <div class="clr-col-lg-6 clr-col-sm-12">
+        <clr-input-container>
+            <label>
+                Select Images
+                <br>
+                <small class="small-message">{{photosMessage}}</small>
+            </label>
+            <input clrInput type="file" multiple accept="image/**" 
+            [disabled]="!(['CreateBulkUpload'] | hasPermission)"
+            (change)="parseImages($event)" id="filePicker"/>
+        </clr-input-container>
+    </div>
+    <div class="clr-col-lg-2 button-row clr-offset-lg-3 clr-col-sm-5">
+        <button
+            type="button"
+            (click)="getUploadFormat($event)"
+            class="btn btn-primary button-row"
+            [disabled]="!(['CreateBulkUpload'] | hasPermission)"
+        >
+            <clr-icon shape="file"></clr-icon> Get format
+        </button>
+    </div>
+    <div class="clr-col-lg-1 button-row clr-col-sm-5">
+        <button
+            type="button"
+            (click)="reformatData()"
+            class="btn btn-primary button-row"
+            [disabled]="!submittable || !(['CreateBulkUpload'] | hasPermission)"
+        >
+            <clr-icon shape="upload"></clr-icon> Submit
+        </button>
+    </div>
+</div>
+<vdr-data-table
+    [items]="itemsList"
+    [itemsPerPage]="itemsPerPage"
+    [totalItems]="itemsList.length"
+    [currentPage]="currentPage"
+    (pageChange)="setPage($event)"
+    (itemsPerPageChange)="setItemsPerPage($event)"
+>   
+    <!-- <vdr-dt-column></vdr-dt-column> -->
+    <vdr-dt-column *ngFor="let col of columns" :key="col">{{ col }}</vdr-dt-column>
+    <ng-template let-result="item">
+        <td class="left align-middle">
+            <img class="img-cell"
+            [alt]="result['Featured Asset'] + ' is not found'"/>
+            {{ result['Featured Asset'] == null ? 'Product Variant':'' }}
+        </td>
+        <td class="left align-middle">
+            {{ result.Name ?? '---------------' }}
+        </td>
+        <!-- <td class="left align-middle">
+            {{ result.slug ?? '---------------' }}
+        </td> -->
+        <td class="left align-middle">
+            {{ result.Description ?? '---------------' }}
+        </td>
+        <td class="left align-middle">
+            {{ result.SKU ?? '---------------' }}
+        </td>
+        <td class="left align-middle">
+            {{ result.Price != null ? result.Price + ' ETB' : '---------------' }}
+        </td>
+        <td class="left align-middle">
+            {{ result.Stock ?? '---------------' }}
+        </td>
+        <!-- <td class="left align-middle">
+            <span class="label label-warning" *ngIf="result.status === 0">Incomplete</span>
+            <span class="label label-warning" *ngIf="result.status === 1">
+                ASSET SIZE LIMIT EXCEEDED
+            </span>
+            <span class="label label-info" *ngIf="result.status === 2">Ready</span>
+            <span class="label label-info" *ngIf="result.status === 3">
+                Asset Created
+            </span>
+            <span class="label label-info" *ngIf="result.status === 4">
+                Product Created
+            </span>
+            <span class="label label-info" *ngIf="result.status === 5">
+                Product Variant Added
+            </span>
+            <span class="label label-success" *ngIf="result.status === 6">Success</span>
+            <span class="label label-danger" *ngIf="result.status === 7">SKU not Unique</span>
+            <span class="label label-danger" *ngIf="result.status === 8">Error</span>
+        </td> -->
+    </ng-template>
+</vdr-data-table>
+<clr-modal [(clrModalOpen)]="showMessage">
+    <h3 class="modal-title">Parsing Error</h3>
+    <div class="modal-body">{{message}}</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showMessage=false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="showMessage=false">OK </button>
+    </div>
+</clr-modal>

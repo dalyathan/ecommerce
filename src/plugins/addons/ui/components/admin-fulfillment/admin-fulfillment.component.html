@@ -1,0 +1,63 @@
+<div>
+    <div class="clr-row row-heading">
+        <div class="container">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-figure">{{ totalOrder }}</div>
+                    <div class="stat-label">{{ 'dashboard.total-orders' | translate }}</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-figure">
+                        {{ totalAmount }} ETB
+                    </div>
+                    <div class="stat-label">{{ 'dashboard.total-order-value' | translate }}</div>
+                </div>
+            </div>
+            <div class="footer" *ngIf="weeklyGraphData && monthlyGraphData && yearlyGraphData">
+                <div class="btn-group btn-outline-primary btn-sm">
+                    <button class="btn" [class.btn-primary]="totalAmount === weeklyGraphData.totalAmount" (click)="setTotal(weeklyGraphData)">
+                        This Week
+                    </button>
+                    <button class="btn" [class.btn-primary]="totalAmount === monthlyGraphData.totalAmount" (click)="setTotal(monthlyGraphData)">
+                        This Month
+                    </button>
+                    <button class="btn" [class.btn-primary]="totalAmount === yearlyGraphData.totalAmount" (click)="setTotal(yearlyGraphData)">
+                        This Year
+                    </button>
+                </div>
+            
+                <!-- <div class="date-range p5" *ngIf="dateRange$ | async as range">
+                    {{ range.start | localeDate }} - {{ range.end | localeDate }}
+                </div> -->
+            </div>
+        </div>
+        
+    </div>
+    <div class="clr-row graphs">
+        <div class="clr-col-4">
+            <div class="card card-block">
+                    <h4 class="card-title">This Week's Sales</h4>
+                    <p class="card-text">
+                        <canvas id="weeklyGraph" class="box">
+                        </canvas>
+                    </p>
+            </div>
+        </div>
+        <div class="clr-col-4">
+            <div class="card card-block">
+                    <h4 class="card-title">This Month's Sales</h4>
+                    <p class="card-text">
+                        <canvas id="monthlyGraph" class="box">
+                        </canvas>
+                    </p>
+            </div>
+        </div>
+        <div class="clr-col-4">
+            <div class="card card-block">
+                    <h4 class="card-title">This Year's Sales</h4>
+                    <canvas id="yearlyGraph" class="box">
+                    </canvas>
+            </div>
+        </div>
+    </div>
+</div>

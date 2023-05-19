@@ -1,0 +1,21 @@
+<ng-template vdrDialogTitle>
+    Select Adminstrators
+</ng-template>
+
+<vdr-admin-list
+    [members]="customers$ | async"
+    [totalItems]="customersTotal$ | async"
+    [route]="route"
+    [selectedMemberIds]="selectedCustomerIds"
+    (fetchParamsChange)="fetchGroupMembers$.next($event)"
+    (selectionChange)="selectedCustomerIds = $event"
+>
+
+</vdr-admin-list>
+
+<ng-template vdrDialogButtons>
+    <button type="button" class="btn" (click)="cancel()">{{ 'common.cancel' | translate }}</button>
+    <button type="submit" (click)="add()" [disabled]="!selectedCustomerIds.length" class="btn btn-primary">
+        Add {{ selectedCustomerIds.length }} Adminstrators
+    </button>
+</ng-template>
